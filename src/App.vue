@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <ToDoList v-bind:todos="groceryList"></ToDoList>
+    <ToDoList v-bind:todos="todos" @remove-item="removeToDo"></ToDoList>
   </div>
 </template>
 
@@ -15,11 +15,23 @@ export default {
   },
   data() {
     return {
-      groceryList: [
-        { id: 0, text: 'Vegetables' },
-        { id: 1, text: 'Cheese' },
-        { id: 2, text: 'Whatever else humans are supposed to eat' }
+      todos: [
+        { id: 0, text: 'Code' },
+        { id: 1, text: 'Test' },
+        { id: 2, text: 'Deploy' }
       ]
+    }
+  },
+  methods: {
+    removeToDo(id){
+      console.log("Removing todo by ID: " + id)
+
+      for(let i = 0; i < this.todos.length; i++){
+        if(this.todos[i].id == id) {
+          this.todos.splice(i, 1)
+        }
+      }
+
     }
   }
 }

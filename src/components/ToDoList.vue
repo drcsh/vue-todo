@@ -1,25 +1,30 @@
 <template>
 <div id="todo-list-app">
   <h1>Todo:</h1>
-  <ol>
-    <!--
-      Now we provide each todo-item with the todo object
-      it's representing, so that its content can be dynamic.
-      We also need to provide each component with a "key",
-      which will be explained later.
-    -->
-    <li v-for="item in todos" v-bind:key="item.id">
-      {{ item.text }}
-    </li>
-  </ol>
+  <ul>
+    <ToDoItem
+        v-for="item in todos"
+        :key="item.id"
+        :item="item"
+        @remove-item="removeListener"
+    ></ToDoItem>
+  </ul>
 </div>
 </template>
 
 <script>
+import ToDoItem from "@/components/ToDoItem";
 export default {
   name: "ToDoList",
+  components: {ToDoItem},
   props: ['todos'],
-  template:'<li>{{ item }}</li>'
+  emits: ['remove-item'],
+  methods:{
+      removeListener(id) {
+        // Re-emit the event for the parent to handle
+        this.$emit('remove-item', id);
+      }
+    }
 }
 </script>
 
