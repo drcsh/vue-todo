@@ -2,16 +2,18 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <ToDoList v-bind:todos="todos" @remove-item="removeToDo"></ToDoList>
+    <NewToDoForm></NewToDoForm>
   </div>
 </template>
 
 <script>
 import ToDoList from './components/ToDoList.vue'
-
+import NewToDoForm from "@/components/NewToDoForm";
 export default {
   name: 'App',
   components: {
-    ToDoList
+    ToDoList,
+    NewToDoForm
   },
   data() {
     return {
