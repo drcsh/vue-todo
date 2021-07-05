@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <ToDoList v-bind:todos="todos" @remove-item="removeToDo"></ToDoList>
-    <NewToDoForm></NewToDoForm>
+    <NewToDoForm @new-todo="addToDo"></NewToDoForm>
   </div>
 </template>
 
@@ -34,6 +34,18 @@ export default {
         }
       }
 
+    },
+    addToDo(value) {
+      let highestId = 0;
+      for (let i = 0; i < this.todos.length; i++) {
+        if (this.todos[i].id > highestId){
+          highestId = this.todos[i].id
+        }
+      }
+      this.todos.push({
+        id: highestId + 1,
+        text: value
+      })
     }
   }
 }
