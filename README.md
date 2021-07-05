@@ -1,5 +1,12 @@
 # vue-todo
 
+This is a basic ToDo app written as a SPA using Vue3. Todo items are kept in the data class and do
+not persist across reloads (no back end.)
+
+Todos can be added and removed.
+
+![](screenshot.png)
+
 ## Project setup
 ```
 npm install
