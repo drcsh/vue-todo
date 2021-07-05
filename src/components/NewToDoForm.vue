@@ -19,20 +19,29 @@ export default {
     }
   },
   methods: {
+    /**
+     * Handles the button press for adding a ToDo - finds the
+     * input element in the form, reads the input, trims it, and
+     * if it's not blank, emits a new-todo event.
+     * @param submitEvent
+     */
     newToDo(submitEvent){
       console.log(submitEvent)
       let new_item = ""
+
       for (let element of submitEvent.target.elements){
         if (element.name == this.formInputName) {
           new_item = element.value.trim()
           break
         }
       }
+
       if (new_item != ""){
         this.$emit('new-todo', new_item)
       } else {
         console.log("Empty todo - doing nothing")
       }
+
     }
   }
 }

@@ -25,7 +25,11 @@ export default {
     }
   },
   methods: {
-    removeToDo(id){
+    /**
+     * Removes a ToDo item by ID
+     * @param {number} id: id to delete
+     */
+    removeToDo(id) {
       console.log("Removing todo by ID: " + id)
 
       for(let i = 0; i < this.todos.length; i++){
@@ -35,7 +39,13 @@ export default {
       }
 
     },
-    addToDo(value) {
+    /**
+     * Add a new ToDo to the todo list.
+     * @type {string} input: text for the new ToDo
+     */
+    addToDo(input) {
+      // First find the highest Id in the list - this would usually
+      // be a pk in the DB and handled by the DB.
       let highestId = 0;
       for (let i = 0; i < this.todos.length; i++) {
         if (this.todos[i].id > highestId){
@@ -44,7 +54,7 @@ export default {
       }
       this.todos.push({
         id: highestId + 1,
-        text: value
+        text: input
       })
     }
   }
